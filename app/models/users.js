@@ -8,11 +8,14 @@ var User = new Schema({
 		id: String,
 		displayName: String,
 		username: String,
-		token: String
+		token: String,
+		profilePic: String
 	},
-   nbrClicks: {
-      clicks: Number
-   }
+
+	images: [{
+		url: String,
+		description: String
+	}]
 });
 
 module.exports = mongoose.model('User', User);
