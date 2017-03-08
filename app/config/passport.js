@@ -41,7 +41,6 @@ module.exports = function(passport) {
         // make the code asynchronous
     // User.findOne won't fire until we have all our data back from Twitter
         process.nextTick(function() {
-						console.log(profile)
             User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
 
                 // if there is an error, stop everything and return that

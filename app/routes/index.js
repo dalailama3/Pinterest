@@ -1,7 +1,7 @@
 'use strict';
 
 var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var ImageHandler = require(path + '/app/controllers/imageHandler.server.js');
 
 module.exports = function (app, passport) {
 
@@ -13,7 +13,7 @@ module.exports = function (app, passport) {
 		}
 	}
 
-	var clickHandler = new ClickHandler();
+	var imageHandler = new ImageHandler();
 
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
@@ -49,5 +49,9 @@ module.exports = function (app, passport) {
 			successRedirect: '/',
 			failureRedirect: '/login'
 		}));
+
+	app.route('/images')
+		.get(imageHandler.getAllImages)
+		.post(imageHandler.addImage)
 
 };

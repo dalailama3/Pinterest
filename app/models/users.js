@@ -14,7 +14,8 @@ var User = new Schema({
 
 	images: [{
 		url: String,
-		description: String
+		description: String,
+		likes: [String]
 	}]
 });
 
