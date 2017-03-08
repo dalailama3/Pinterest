@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-  var $imagesUl = $('ul.images');
+  var $imagesUl = $('ul.myimages');
   $.ajax({
     url: '/images',
     method: 'get',

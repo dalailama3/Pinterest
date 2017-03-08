@@ -26,6 +26,16 @@ function ImagesHandler () {
 			})
 	}
 
+	this.myImages = function (req, res) {
+		Users
+			.findOne({ 'twitter.id': req.user.twitter.id })
+			.exec(function (err, result) {
+				if (err) { throw err; }
+
+				res.send(result.images)
+			})
+	}
+
 }
 
 module.exports = ImagesHandler;

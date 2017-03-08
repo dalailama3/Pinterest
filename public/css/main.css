@@ -202,3 +202,11 @@ span {
 	display: inline;
 	margin: 0;
 }
+
+li {
+  list-style: none;
+}
+
+ul.images, ul.myimages {
+  display: flex;
+}

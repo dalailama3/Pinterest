@@ -54,4 +54,10 @@ module.exports = function (app, passport) {
 		.get(imageHandler.getAllImages)
 		.post(imageHandler.addImage)
 
+	app.route('/myimages')
+		.get(isLoggedIn, function (req, res) {
+			res.sendFile(path + '/public/myimages.html')
+		});
+
+
 };
