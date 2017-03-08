@@ -36,6 +36,16 @@ function ImagesHandler () {
 			})
 	}
 
+	this.deleteImage = function (req, res) {
+		Users
+			.findOneAndUpdate({ 'images': { $elemMatch: { '_id': req.params.id }}}, {
+				$pull: { 'images': { '_id': req.params.id }}
+			})
+			.exec(function (err, result) {
+				res.send(result)
+			})
+	}
+
 }
 
 module.exports = ImagesHandler;

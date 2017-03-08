@@ -59,5 +59,8 @@ module.exports = function (app, passport) {
 			res.sendFile(path + '/public/myimages.html')
 		});
 
+	app.route('/images/:id')
+		.delete(imageHandler.deleteImage)
+
 
 };
