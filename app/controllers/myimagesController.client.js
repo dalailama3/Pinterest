@@ -9,10 +9,15 @@ $(document).ready(function () {
   })
   .done(function (result) {
     result.forEach((user)=> {
+      var profileImg = user.twitter.profilePic;
       user.images.forEach((image)=> {
         var $div = $('<div>', { 'class': 'grid-item' })
         var $img = $('<img>', { 'src': image.url })
         var $p = $('<p>', { 'text': image.description })
+
+        var $infoDiv = $('<div>', { 'class': 'info-div' })
+        var $profileImg = $('<img>', { 'src': profileImg, 'class': 'profile-pic' })
+        $infoDiv.append($profileImg)
 
         var $deleteButton = $('<button>', { text: 'Delete' })
         $deleteButton.data('id', image._id)
@@ -28,9 +33,11 @@ $(document).ready(function () {
           })
         })
 
+        
+        $infoDiv.append($deleteButton)
         $div.append($img)
         $div.append($p)
-        $div.append($deleteButton)
+        $div.append($infoDiv)
         $imagesGrid.append($div)
 
 

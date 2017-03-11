@@ -14,7 +14,13 @@ $(document).ready(function () {
         var $img = $('<img>', { 'src': image.url })
         var $p = $('<p>', { 'text': image.description })
 
+        var $infoDiv = $('<div>', { 'class': 'info-div' })
+        var $profileImg = $('<img>', { 'src': user.twitter.profilePic, 'class': 'profile-pic' })
+        $infoDiv.append($profileImg)
+
         $div.append($img)
+        $div.append($p)
+        $div.append($profileImg)
         $imagesGrid.append($div)
       })
 
@@ -23,7 +29,7 @@ $(document).ready(function () {
 
 
     $imagesGrid.masonry({
-      itemSelector: '.grid-item'
+      itemSelector: '.grid-item',
     })
   })
 
