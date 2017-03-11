@@ -16,11 +16,15 @@ $(document).ready(function () {
 
         var $infoDiv = $('<div>', { 'class': 'info-div' })
         var $profileImg = $('<img>', { 'src': user.twitter.profilePic, 'class': 'profile-pic' })
-        $infoDiv.append($profileImg)
+        var $likesDiv = $('<div>', { 'class': 'likes'})
 
+        
+        $infoDiv.append($profileImg)
+        $infoDiv.append($likesDiv)
         $div.append($img)
         $div.append($p)
-        $div.append($profileImg)
+        $div.append($infoDiv)
+
         $imagesGrid.append($div)
       })
 

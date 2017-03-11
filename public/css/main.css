@@ -220,6 +220,7 @@ li {
   text-align: center;
   margin: 5px;
   box-shadow: 2px 2px 5px rgba(102, 102, 102, 0.5);
+  border-radius: 5px;
 }
 .grid-item:hover {
   box-shadow: 5px 5px 7px rgba(102, 102, 102, 0.5);
@@ -246,4 +247,18 @@ li {
   font-size: 0.9em;
   overflow: hidden;
   color: #444;
+}
+
+.delete {
+  background-image: url("../img/delete-gray.png");
+  background-size: cover;
+  height: 30px;
+  width: 30px;
+}
+
+.likes {
+  background-image: url("../img/yeah.png");
+  background-size: cover;
+  height: 37px;
+  width: 30px;
 }

@@ -19,11 +19,11 @@ $(document).ready(function () {
         var $profileImg = $('<img>', { 'src': profileImg, 'class': 'profile-pic' })
         $infoDiv.append($profileImg)
 
-        var $deleteButton = $('<button>', { text: 'Delete' })
-        $deleteButton.data('id', image._id)
+        var $deleteDiv = $('<div>', { 'class': 'delete' })
+        $deleteDiv.data('id', image._id)
 
-        $deleteButton.on('click', function () {
-          var parent = $(this).parent()
+        $deleteDiv.on('click', function () {
+          var parent = $(this).parent().parent()
           var imageId = $(this).data('id')
           $.ajax({
             url: `/images/${imageId}`,
@@ -33,8 +33,11 @@ $(document).ready(function () {
           })
         })
 
-        
-        $infoDiv.append($deleteButton)
+        var $likesDiv = $('<div>', { 'class': 'likes'})
+
+
+        $infoDiv.append($deleteDiv)
+        $infoDiv.append($likesDiv)
         $div.append($img)
         $div.append($p)
         $div.append($infoDiv)
