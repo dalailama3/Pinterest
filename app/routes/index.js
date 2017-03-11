@@ -64,7 +64,7 @@ module.exports = function (app, passport) {
 
 	app.get('/images/:id/likes', imageHandler.getLikes)
 	app.get('/images/:id/addLike', imageHandler.addLike)
-	app.get('/images/:id/removeLike', imageHandler.removeLike)
+	// app.get('/images/:id/removeLike', imageHandler.removeLike)
 
 
 };

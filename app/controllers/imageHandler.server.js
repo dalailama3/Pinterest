@@ -57,7 +57,14 @@ function ImagesHandler () {
 	}
 
 	this.addLike = function (req, res) {
-		
+		Users
+			.findOneAndUpdate({ 'images': { $elemMatch: { '_id': req.params.id }}}, {
+				$push: { 'images.$.likes': req.user.twitter.id }
+			})
+			.exec(function (err, result) {
+					if (err) { throw err; }
+					res.end()
+			})
 	}
 
 }
