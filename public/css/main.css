@@ -209,7 +209,9 @@ li {
 
 
 .grid {
-  margin: 0 auto; }
+  margin: 0 auto;
+  width: 75%;
+}
 
 .grid-item {
   background-color: #f8f8f8;
