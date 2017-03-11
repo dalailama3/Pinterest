@@ -1,34 +1,34 @@
 
 $(document).ready(function () {
 
-  function updateImageLikes () {
-
-  }
 
   function addOrRemoveLike () {
     var $span = $(this).next()
-    var id = $(this).data("id")
+    var spanVal = parseInt($span.text())
+    var imageId = $(this).data("imageId")
+    var userId = $(this).data("userId")
 
     $.ajax({
-      url: '/images/' + id + '/likes',
+      url: '/images/' + imageId + '/likes',
       method: 'get',
       dataType: 'json'
     })
     .done(function (result) {
       var likes = result.images[0].likes;
-      if (likes.indexOf(id) === -1) {
+      console.log(likes)
+      console.log(imageId)
+      if (likes.indexOf(userId) === -1) {
 
         $.ajax({
-          url: '/images/' + id + '/addLike',
+          url: '/images/' + imageId + '/addLike',
           method: 'get'
         }).done(function () {
-          var spanVal = parseInt($span.text())
           $span.text(spanVal + 1)
         })
       } else {
 
         $.ajax({
-          url: '/images/' + id + '/removeLike',
+          url: '/images/' + imageId + '/removeLike',
           method: 'get'
         }).done(function () {
           $span.text(spanVal - 1)
@@ -54,7 +54,8 @@ $(document).ready(function () {
         var $profileImg = $('<img>', { 'src': user.twitter.profilePic, 'class': 'profile-pic' })
         var $likesDiv = $('<div>', { 'class': 'likes'})
 
-        $likesDiv.data('id', image._id)
+        $likesDiv.data('imageId', image._id)
+        $likesDiv.data('userId', user.twitter.id)
         $spanCounter = $('<span>', { 'class': 'likes-count', 'text': image.likes.length})
 
         $likesDiv.on('click', addOrRemoveLike)

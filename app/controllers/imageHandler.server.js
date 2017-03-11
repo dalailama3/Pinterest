@@ -48,7 +48,7 @@ function ImagesHandler () {
 
 	this.getLikes = function (req, res) {
 		Users
-			.findOne({ 'twitter.id': req.user.twitter.id }, { 'images': { $elemMatch: { '_id': req.params.id }}})
+			.findOne({ 'images': { $elemMatch: { '_id': req.params.id }}})
 			.exec(function (err, result) {
 				if (err) { throw err; }
 
@@ -57,14 +57,27 @@ function ImagesHandler () {
 	}
 
 	this.addLike = function (req, res) {
+		var userId = req.user.twitter.id;
 		Users
 			.findOneAndUpdate({ 'images': { $elemMatch: { '_id': req.params.id }}}, {
-				$push: { 'images.$.likes': req.user.twitter.id }
+				$push: { 'images.$.likes': userId }
 			})
 			.exec(function (err, result) {
 					if (err) { throw err; }
-					res.end()
+					res.send(result)
 			})
+	}
+
+	this.removeLike = function (req, res) {
+		Users
+			.findOneAndUpdate({ 'images': { $elemMatch: { '_id': req.params.id }}}, {
+				$pull: { 'images.$.likes': req.user.twitter.id }
+			})
+			.exec(function (err, result) {
+					if (err) { throw err; }
+					res.send(result)
+			})
+
 	}
 
 }
