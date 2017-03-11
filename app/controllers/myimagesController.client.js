@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-  var $imagesUl = $('ul.myimages');
+  var $imagesGrid = $('.myimages');
   $.ajax({
     url: '/images',
     method: 'get',
@@ -10,32 +10,42 @@ $(document).ready(function () {
   .done(function (result) {
     result.forEach((user)=> {
       user.images.forEach((image)=> {
-        var $li = $('<li>')
-        $li.text(image.description)
+        // urlStr = `url("${image.url}")`
+        var $div = $('<div>', { 'class': 'grid-item' })
         var $img = $('<img>', { 'src': image.url })
+        var $p = $('<p>', { 'text': image.description })
 
         var $deleteButton = $('<button>', { text: 'Delete' })
         $deleteButton.data('id', image._id)
 
         $deleteButton.on('click', function () {
-          var li = $(this).parent()
+          var parent = $(this).parent()
           var imageId = $(this).data('id')
           $.ajax({
             url: `/images/${imageId}`,
             method: 'delete'
           }).done(function (result) {
-            li.remove()
+            parent.remove()
           })
         })
 
-        $li.append($img)
-        $li.append($deleteButton)
-        $imagesUl.append($li)
+        $div.append($img)
+        $div.append($p)
+        $div.append($deleteButton)
+        $imagesGrid.append($div)
+
+
       })
 
 
     })
+
+    $imagesGrid.masonry({
+      itemSelector: '.grid-item'
+    })
+
   })
+
 
 
 })
