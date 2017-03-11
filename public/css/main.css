@@ -261,4 +261,10 @@ li {
   background-size: cover;
   height: 37px;
   width: 30px;
+  cursor: pointer;
+}
+
+.likes-count {
+  height: 20px;
+  width: 20px;
 }

@@ -46,6 +46,20 @@ function ImagesHandler () {
 			})
 	}
 
+	this.getLikes = function (req, res) {
+		Users
+			.findOne({ 'twitter.id': req.user.twitter.id }, { 'images': { $elemMatch: { '_id': req.params.id }}})
+			.exec(function (err, result) {
+				if (err) { throw err; }
+
+				res.send(result)
+			})
+	}
+
+	this.addLike = function (req, res) {
+		
+	}
+
 }
 
 module.exports = ImagesHandler;
