@@ -227,7 +227,9 @@ li {
 }
 
 .info-div {
-  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .grid-item img {
@@ -237,7 +239,8 @@ li {
 
 
 .grid-item .profile-pic {
-  width: 40px;
+  width: 60px;
+  margin: 5px;
 }
 
 .grid-item p {
@@ -250,13 +253,16 @@ li {
 }
 
 .delete {
+  margin: 10px;
   background-image: url("../img/delete-gray.png");
   background-size: cover;
   height: 30px;
   width: 30px;
+  cursor: pointer;
 }
 
 .likes {
+  margin: 10px;
   background-image: url("../img/yeah.png");
   background-size: cover;
   height: 37px;
@@ -265,6 +271,7 @@ li {
 }
 
 .likes-count {
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
+  font-size: 20px;
 }
