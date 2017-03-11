@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-  var $imagesUl = $('ul.images');
+  var $imagesGrid = $('.images');
   $.ajax({
     url: '/images',
     method: 'get',
@@ -10,17 +10,23 @@ $(document).ready(function () {
   .done(function (result) {
     result.forEach((user)=> {
       user.images.forEach((image)=> {
-        var $li = $('<li>')
-        $li.text(image.description)
+        var $div = $('<div>', { 'class': 'grid-item' })
         var $img = $('<img>', { 'src': image.url })
+        var $p = $('<p>', { 'text': image.description })
 
-        $li.append($img)
-        $imagesUl.append($li)
+        $div.append($img)
+        $imagesGrid.append($div)
       })
 
 
     })
+
+
+    $imagesGrid.masonry({
+      itemSelector: '.grid-item'
+    })
   })
+
 
 
 })

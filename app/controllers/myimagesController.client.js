@@ -10,7 +10,6 @@ $(document).ready(function () {
   .done(function (result) {
     result.forEach((user)=> {
       user.images.forEach((image)=> {
-        // urlStr = `url("${image.url}")`
         var $div = $('<div>', { 'class': 'grid-item' })
         var $img = $('<img>', { 'src': image.url })
         var $p = $('<p>', { 'text': image.description })
