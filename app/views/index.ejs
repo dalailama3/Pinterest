@@ -26,12 +26,15 @@
 
 	<body>
 
+		<div class="hidden"><%= JSON.stringify(locals.user) %></div>
+
+
 		<h1>Add image</h1>
 
-		<form method="POST" action='/images'>
+		<form>
 			<input type="text" name="url">image url</input>
 			<input type="text" name="description">Description</input>
-			<button type="submit">Submit</button>
+			<button type="submit add-image">Submit</button>
 		</form>
 		<div class="grid images"></div>
 

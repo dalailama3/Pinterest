@@ -17,7 +17,9 @@ module.exports = function (app, passport) {
 
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/index.html');
+			res.render('index.ejs', {
+				user: req.user.twitter
+			});
 		});
 
 	app.route('/login')

@@ -1,6 +1,7 @@
 'use strict';
 
 var Users = require('../models/users.js');
+var path = require('path')
 
 function ImagesHandler () {
 
@@ -16,7 +17,6 @@ function ImagesHandler () {
 
 	this.addImage = function (req, res) {
 		var image = req.body;
-		console.log(image)
 		Users
 			.findOneAndUpdate( { 'twitter.id': req.user.twitter.id }, { $push: { 'images': image } }, { 'new': true })
 			.exec(function (err, result) {
