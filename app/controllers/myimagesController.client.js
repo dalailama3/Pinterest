@@ -13,10 +13,13 @@ $(document).ready(function () {
         method: 'get',
         dataType: 'json'
       })
-      .done(function (result) {
-        var likes = result.images[0].likes;
-        console.log(likes)
-        console.log(imageId)
+      .done(function (images) {
+        var likes;
+        images.forEach((image)=> {
+          if (image._id === imageId) {
+            likes = image.likes
+          }
+        })
         if (likes.indexOf(userId) === -1) {
 
           $.ajax({
@@ -50,6 +53,12 @@ $(document).ready(function () {
         var $div = $('<div>', { 'class': 'grid-item' })
         var $img = $('<img>', { 'src': image.url })
         var $p = $('<p>', { 'text': image.description })
+
+        $("img").bind("error",function(){
+          // Replacing image source
+          $(this).attr("src","/public/img/noimage.png");
+
+         });
 
         var $infoDiv = $('<div>', { 'class': 'info-div' })
         var $profileImg = $('<img>', { 'src': profileImg, 'class': 'profile-pic' })

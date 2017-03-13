@@ -2,6 +2,8 @@
 $(document).ready(function () {
 
 
+
+
   function addOrRemoveLike () {
     var $span = $(this).next()
     var spanVal = parseInt($span.text())
@@ -15,9 +17,14 @@ $(document).ready(function () {
       method: 'get',
       dataType: 'json'
     })
-    .done(function (result) {
-      var likes = result.images[0].likes;
-      console.log(likes)
+    .done(function (images) {
+      var likes;
+      images.forEach((image)=> {
+        if (image._id === imageId) {
+          likes = image.likes
+        }
+      })
+
       if (likes.indexOf(userId) === -1) {
 
         $.ajax({
@@ -61,6 +68,13 @@ $(document).ready(function () {
 
         $likesDiv.on('click', addOrRemoveLike)
 
+        $("img").bind("error",function(){
+          // Replacing image source
+          $(this).attr("src","/public/img/noimage.png");
+
+         });
+
+
         $infoDiv.append($profileImg)
         $infoDiv.append($likesDiv)
         $infoDiv.append($spanCounter)
@@ -80,16 +94,24 @@ $(document).ready(function () {
     })
   })
 
+  function validateURL(textval) {
+      var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
+      return urlregex.test(textval);
+  }
+
 
 
   $('form').on('submit', function (event) {
-    // var $imagesGrid = $('.grid')
-    var user = $('.hidden').text()
-    var profilePic = JSON.parse(user).profilePic
+    // var user = $('.hidden').text()
+    // var profilePic = JSON.parse(user).profilePic
     event.preventDefault()
     var children = $(this).children()
     var url = $(children[0]).val()
     var description = $(children[1]).val()
+    // 
+    // var isValidUrl = validateURL(url)
+    // console.log(isValidUrl)
+    //add validation for url
     if (url.length > 0 && description.length > 0) {
       $.ajax({
         url: '/images',
@@ -100,16 +122,12 @@ $(document).ready(function () {
         },
         dataType: 'json'
       }).done(function (result) {
-        //add new image to the DOM
-        location.reload()
-
-
-
-
+        location.reload();
       })
     }
 
   })
+
 
 
 

@@ -48,11 +48,11 @@ function ImagesHandler () {
 
 	this.getLikes = function (req, res) {
 		Users
-			.findOne({ 'images': { $elemMatch: { '_id': req.params.id }}})
+			.findOne({ 'images': { $elemMatch: { '_id': req.params.id }}}, { 'images.$.likes': 1})
 			.exec(function (err, result) {
 				if (err) { throw err; }
 
-				res.send(result)
+				res.send(result.images)
 			})
 	}
 
