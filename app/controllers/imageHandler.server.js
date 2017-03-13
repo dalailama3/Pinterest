@@ -80,6 +80,16 @@ function ImagesHandler () {
 
 	}
 
+	this.getUserImages = function (req, res) {
+		Users
+			.findOne({ 'twitter.id': req.params.userId})
+			.exec(function (err, result) {
+				if (err) {throw err;}
+
+				res.send(result.images)
+			})
+	}
+
 }
 
 module.exports = ImagesHandler;

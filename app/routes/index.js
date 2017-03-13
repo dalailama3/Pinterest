@@ -66,12 +66,13 @@ module.exports = function (app, passport) {
 			res.sendFile(path + '/public/myimages.html')
 		});
 
+	app.get('/images/:userId', imageHandler.getUserImages)
+
 	app.route('/images/:id')
 		.delete(imageHandler.deleteImage)
 
 	app.get('/images/:id/likes', isLoggedIn, imageHandler.getLikes)
 	app.get('/images/:id/addLike', isLoggedIn, imageHandler.addLike)
 	app.get('/images/:id/removeLike', isLoggedIn, imageHandler.removeLike)
-
 
 };
