@@ -69,7 +69,7 @@ $(document).ready(function () {
         $likesDiv.data('imageId', image._id)
 
         if ($('.signedInUser').length) {
-          var signedInUserTwitterId = JSON.parse($('.signedInUser').text())
+          var signedInUserTwitterId = JSON.parse($('.signedInUser').text()).id
           $likesDiv.data('userId', signedInUserTwitterId)
 
         }

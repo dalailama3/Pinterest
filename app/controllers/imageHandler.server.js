@@ -90,7 +90,7 @@ function ImagesHandler () {
 					res.render('userImages.ejs', {
 						images: result.images,
 						user: result,
-						signedInUser: req.user.twitter.id
+						signedInUser: req.user.twitter
 					})
 				} else {
 

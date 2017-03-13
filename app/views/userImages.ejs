@@ -56,7 +56,7 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a class="menu" href="/profile">Profile</a></li>
-						<% if (locals.user) { %>
+						<% if (locals.signedInUser) { %>
 							<li><a class="menu" href="/logout">Logout</a></li>
 
 						<% } else { %>
@@ -66,15 +66,15 @@
 
 						<% } %>
 					</ul>
-					<% if (locals.user) { %>
-						<p class="navbar-text navbar-right">Signed in as <span id="display-name"></span> </p>
+					<% if (locals.signedInUser) { %>
+						<p class="navbar-text navbar-right">Signed in as <%= JSON.parse(JSON.stringify(locals.signedInUser)).displayName %></p>
 					<% } %>
 
 				</div>
 			</div>
 		</nav>
 
-
+    <h1 class="wall-title"><%= locals.user.twitter.displayName %>'s Wall %></h1> 
 		<div class="grid images"></div>
 
     <script type="text/javascript" src="../controllers/userImageController.client.js"></script>
