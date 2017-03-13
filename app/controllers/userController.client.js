@@ -7,7 +7,7 @@
    var profilePicture = document.querySelector('#profile-picture') || null;
    var displayName = document.querySelector('#display-name');
 
-   var apiUrl = appUrl + '/api/:id';
+   var apiUrl = '/api/:id';
 
    function updateHtmlElement (data, element, userProperty) {
       element.innerHTML = data[userProperty];

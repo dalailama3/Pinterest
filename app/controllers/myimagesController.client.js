@@ -111,6 +111,36 @@ $(document).ready(function () {
 
   })
 
+  $('form').submit(function (event) {
+    event.preventDefault()
+    console.log('submitting form')
+
+    // var user = $('.hidden').text()
+    // var profilePic = JSON.parse(user).profilePic
+    var url = $(this).find('input[name="url"]').val()
+
+    var description = $(this).find('input[name="description"]').val()
+    //
+    // var isValidUrl = validateURL(url)
+    // console.log(isValidUrl)
+    //add validation for url
+    if (url.length > 0 && description.length > 0) {
+      $.ajax({
+        url: '/images',
+        method: 'post',
+        data: {
+          url: url,
+          description: description
+        },
+        dataType: 'json'
+      }).done(function (result) {
+        location.reload();
+      })
+    }
+
+  })
+
+
 
 
 })
