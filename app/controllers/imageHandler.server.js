@@ -86,7 +86,20 @@ function ImagesHandler () {
 			.exec(function (err, result) {
 				if (err) {throw err;}
 
-				res.send(result.images)
+				if (req.user) {
+					res.render('userImages.ejs', {
+						images: result.images,
+						user: result,
+						signedInUser: req.user.twitter.id
+					})
+				} else {
+
+						res.render('userImages.ejs', {
+							images: result.images,
+							user: result
+						})
+				}
+
 			})
 	}
 

@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
 
@@ -46,30 +45,34 @@ $(document).ready(function () {
   }
 
   var $imagesGrid = $('.images');
-  $.ajax({
-    url: '/images',
-    method: 'get',
-    dataType: 'json'
-  })
-  .done(function (result) {
-    result.forEach((user)=> {
-      user.images.forEach((image)=> {
+  var images = $('.userImages').text();
+
+
+  var user = $('.user').text()
+  user = JSON.parse(user)
+
+  images = JSON.parse(images)
+
+  images.forEach((image)=> {
+
         var $div = $('<div>', { 'class': 'grid-item' })
         var $img = $('<img>', { 'src': image.url })
         var $p = $('<p>', { 'text': image.description })
 
         var $infoDiv = $('<div>', { 'class': 'info-div' })
-        var userImagesUrl = '/images/' + user.twitter.id;
 
-        var $profileImg = $('<img>', { 'src': user.twitter.profilePic, 'class': 'profile-pic' })
+        var $profileImg = $('<img>', { 'src': user.twitter.profilePic, 'class': 'profile-pic'})
 
-        var $profileImgLink = $('<a>', { 'href': userImagesUrl });
 
-        $profileImgLink.append($profileImg)
         var $likesDiv = $('<div>', { 'class': 'likes'})
 
         $likesDiv.data('imageId', image._id)
-        $likesDiv.data('userId', user.twitter.id)
+
+        if ($('.signedInUser').length) {
+          var signedInUserTwitterId = JSON.parse($('.signedInUser').text())
+          $likesDiv.data('userId', signedInUserTwitterId)
+
+        }
         $spanCounter = $('<span>', { 'class': 'likes-count', 'text': image.likes.length})
 
         $likesDiv.on('click', addOrRemoveLike)
@@ -81,7 +84,7 @@ $(document).ready(function () {
          });
 
 
-        $infoDiv.append($profileImgLink)
+        $infoDiv.append($profileImg)
         $infoDiv.append($likesDiv)
         $infoDiv.append($spanCounter)
         $div.append($img)
@@ -89,16 +92,13 @@ $(document).ready(function () {
         $div.append($infoDiv)
 
         $imagesGrid.append($div)
-      })
-
-
     })
 
 
     $imagesGrid.masonry({
       itemSelector: '.grid-item',
     })
-  })
+
 
   $('form').submit(function (event) {
     event.preventDefault()
@@ -128,7 +128,4 @@ $(document).ready(function () {
 
   })
 
-
-
-
-})
+});
