@@ -101,14 +101,18 @@ $(document).ready(function () {
 
 
 
-  $('form').on('submit', function (event) {
+  $('form').submit(function (event) {
+    event.preventDefault()
+    console.log('submitting form')
+
     // var user = $('.hidden').text()
     // var profilePic = JSON.parse(user).profilePic
-    event.preventDefault()
-    var children = $(this).children()
-    var url = $(children[0]).val()
-    var description = $(children[1]).val()
-    // 
+    var url = $(this).find('input[name="url"]').val()
+    console.log(url)
+
+    var description = $(this).find('input[name="description"]').val()
+    console.log(description)
+    //
     // var isValidUrl = validateURL(url)
     // console.log(isValidUrl)
     //add validation for url

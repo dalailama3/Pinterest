@@ -6,6 +6,8 @@
 		<title>Pinterest Clone</title>
 
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
 		<script
 		 src="https://code.jquery.com/jquery-3.1.1.min.js"
 		 integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -15,27 +17,45 @@
 
 	</head>
 
-	<header>
-		<p>Welcome, <span id="display-name"></span>!</p>
-		<a class="menu" href="/profile">Profile</a>
-		<p>|</p>
-		<a class="menu" href="/logout">Logout</a>
-		<p>|</p>
-		<a class="menu" href="/myimages">My Images</a>
-	</header>
 
 	<body>
 
 		<div class="hidden"><%= JSON.stringify(locals.user) %></div>
 
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					 <span class="sr-only">Toggle navigation</span>
+					 <span class="icon-bar"></span>
+					 <span class="icon-bar"></span>
+					 <span class="icon-bar"></span>
+				 </button>
+	 		 	<a class="navbar-brand" href="/">Memeterest</a>
+ 				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a class="menu" href="/profile">Profile</a></li>
+						<li><a class="menu" href="/myimages">My Images</a></li>
+					</ul>
 
-		<h1>Add image</h1>
+					<form class="navbar-form navbar-left">
+					  <div class="form-group">
+					    <input type="text" name="url" class="form-control" placeholder="Image url"></input>
+							<input type="text" name="description" class="form-control" placeholder="Description"></input>
 
-		<form>
-			<input type="text" name="url">image url</input>
-			<input type="text" name="description">Description</input>
-			<button type="submit add-image">Submit</button>
-		</form>
+					  </div>
+				  	<button type="submit add-image" class="btn btn-default">Submit</button>
+					</form>
+					<ul class="nav navbar-nav navbar-right">
+        		<li><a class="menu" href="/logout">Logout</a></li>
+					</ul>
+					<p class="navbar-text navbar-right">Signed in as <span id="display-name"></span> </p>
+
+				</div>
+			</div>
+		</nav>
+
 		<div class="grid images"></div>
 
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
