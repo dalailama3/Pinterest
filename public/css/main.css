@@ -241,6 +241,7 @@ li {
 .grid-item .profile-pic {
   width: 60px;
   margin: 5px;
+  cursor: pointer;
 }
 
 .grid-item p {

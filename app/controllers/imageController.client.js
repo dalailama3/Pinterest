@@ -59,7 +59,13 @@ $(document).ready(function () {
         var $p = $('<p>', { 'text': image.description })
 
         var $infoDiv = $('<div>', { 'class': 'info-div' })
-        var $profileImg = $('<img>', { 'src': user.twitter.profilePic, 'class': 'profile-pic' })
+        var userImagesUrl = '/images/' + user.twitter.id;
+
+        var $profileImg = $('<img>', { 'src': user.twitter.profilePic, 'class': 'profile-pic', 'href': userImagesUrl })
+
+        var $profileImgLink = $('<a>', { 'href': userImagesUrl });
+
+        $profileImgLink.append($profileImg)
         var $likesDiv = $('<div>', { 'class': 'likes'})
 
         $likesDiv.data('imageId', image._id)
@@ -75,7 +81,7 @@ $(document).ready(function () {
          });
 
 
-        $infoDiv.append($profileImg)
+        $infoDiv.append($profileImgLink)
         $infoDiv.append($likesDiv)
         $infoDiv.append($spanCounter)
         $div.append($img)
@@ -94,13 +100,6 @@ $(document).ready(function () {
     })
   })
 
-  function validateURL(textval) {
-      var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
-      return urlregex.test(textval);
-  }
-
-
-
   $('form').submit(function (event) {
     event.preventDefault()
     console.log('submitting form')
@@ -112,10 +111,7 @@ $(document).ready(function () {
 
     var description = $(this).find('input[name="description"]').val()
     console.log(description)
-    //
-    // var isValidUrl = validateURL(url)
-    // console.log(isValidUrl)
-    //add validation for url
+
     if (url.length > 0 && description.length > 0) {
       $.ajax({
         url: '/images',
