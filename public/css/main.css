@@ -275,3 +275,26 @@ li {
   width: 25px;
   font-size: 20px;
 }
+
+.brand-img {
+  width: 90px;
+  height: 90px;
+}
+
+.login-brand-img {
+  width: 300px;
+  height: 300px;
+  border-radius: 5px;
+}
+
+.login-twitter-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+
+}
+
+.navbar-brand {
+  color: #FFA000;
+
+}

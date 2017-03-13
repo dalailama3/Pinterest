@@ -5,8 +5,8 @@
 	<head>
 		<title>Pinterest Clone</title>
 
-		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 
 		<script
 		 src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -34,11 +34,13 @@
   					 <span class="icon-bar"></span>
   				 </button>
   	 		 	<div class="navbar-brand">Memeterest</div>
+          <img alt="brand" class="brand-img"src="../public/img/brand-img.png"></img>
    				</div>
   				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   					<ul class="nav navbar-nav">
-  						<li><a class="menu" href="/profile">Profile</a></li>
-  						<li><a class="menu" href="/myimages">My Images</a></li>
+  						<li><a class="menu" href="/">All Images</a></li>
+              <li><a class="menu" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Other</a></li>
+
   					</ul>
 
   					<form class="navbar-form navbar-left">
@@ -50,6 +52,7 @@
   				  	<button type="submit add-image" class="btn btn-default">Submit</button>
   					</form>
   					<ul class="nav navbar-nav navbar-right">
+              <li><a class="menu" href="/profile">Profile</a></li>
           		<li><a class="menu" href="/logout">Logout</a></li>
   					</ul>
   					<p class="navbar-text navbar-right">Signed in as <span id="display-name"></span> </p>

@@ -16,10 +16,15 @@ module.exports = function (app, passport) {
 	var imageHandler = new ImageHandler();
 
 	app.route('/')
-		.get(isLoggedIn, function (req, res) {
-			res.render('index.ejs', {
-				user: req.user.twitter
-			});
+		.get(function (req, res) {
+			if (req.user) {
+				res.render('index.ejs', {
+					user: req.user.twitter
+				});
+			} else {
+				res.render('index.ejs')
+			}
+
 		});
 
 	app.route('/login')
@@ -54,7 +59,7 @@ module.exports = function (app, passport) {
 
 	app.route('/images')
 		.get(imageHandler.getAllImages)
-		.post(imageHandler.addImage)
+		.post(isLoggedIn, imageHandler.addImage)
 
 	app.route('/myimages')
 		.get(isLoggedIn, function (req, res) {
@@ -64,9 +69,9 @@ module.exports = function (app, passport) {
 	app.route('/images/:id')
 		.delete(imageHandler.deleteImage)
 
-	app.get('/images/:id/likes', imageHandler.getLikes)
-	app.get('/images/:id/addLike', imageHandler.addLike)
-	app.get('/images/:id/removeLike', imageHandler.removeLike)
+	app.get('/images/:id/likes', isLoggedIn, imageHandler.getLikes)
+	app.get('/images/:id/addLike', isLoggedIn, imageHandler.addLike)
+	app.get('/images/:id/removeLike', isLoggedIn, imageHandler.removeLike)
 
 
 };
